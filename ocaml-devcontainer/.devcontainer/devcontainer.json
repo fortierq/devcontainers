@@ -1,0 +1,14 @@
+{
+    "name": "OCaml",
+    "dockerFile": "Dockerfile",
+    "onCreateCommand": "echo 'profile = default\nversion = 0.21.0' > .ocamlformat'",
+    "settings": {
+        "editor.formatOnSave": true
+    },
+    "extensions": [
+		"ocamllabs.ocaml-platform",
+		"ms-toolsai.jupyter",
+		"ms-python.python",
+		"GitHub.copilot"
+	]
+}
