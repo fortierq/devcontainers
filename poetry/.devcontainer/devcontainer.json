@@ -26,7 +26,8 @@
 		"GitHub.copilot",
 		"christian-kohler.path-intellisense",
 		"eamodio.gitlens",
-        "analytic-signal.preview-pdf"
+        "analytic-signal.preview-pdf",
+        "mhutchie.git-graph"
 	],
     "containerEnv": {
         "PYTHONPATH": "${containerWorkspaceFolder}",

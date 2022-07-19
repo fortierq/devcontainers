@@ -12,6 +12,7 @@
 		"ms-python.python",
 		"GitHub.copilot",
 		"christian-kohler.path-intellisense",
-        "analytic-signal.preview-pdf"
+        "analytic-signal.preview-pdf",
+        "mhutchie.git-graph"
 	]
 }
