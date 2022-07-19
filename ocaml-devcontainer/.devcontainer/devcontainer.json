@@ -1,7 +1,8 @@
 {
     "name": "OCaml",
-    "dockerFile": "Dockerfile",
-    "onCreateCommand": "echo 'profile = default\nversion = 0.21.0' > .ocamlformat'",
+    "image": "qfortier/ocaml-devcontainer",
+    "onCreateCommand": "echo 'profile = default\nversion = 0.21.0' > .ocamlformat",
+    "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"],
     "settings": {
         "editor.formatOnSave": true
     },
@@ -9,6 +10,8 @@
 		"ocamllabs.ocaml-platform",
 		"ms-toolsai.jupyter",
 		"ms-python.python",
-		"GitHub.copilot"
+		"GitHub.copilot",
+		"christian-kohler.path-intellisense",
+        "analytic-signal.preview-pdf"
 	]
 }
