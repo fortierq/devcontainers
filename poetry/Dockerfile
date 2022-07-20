@@ -1,7 +1,8 @@
-FROM python:3.10
+FROM python:3.10-alpine
 
-RUN apt update && useradd -ms /bin/bash user
+RUN adduser -s /bin/ash -S user && \
+    apk add --update --no-cache curl git
 
 USER user
 ENV PATH /home/user/.local/bin:$PATH
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN curl -SL https://install.python-poetry.org | python3 -

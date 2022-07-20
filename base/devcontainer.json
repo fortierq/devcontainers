@@ -1,0 +1,14 @@
+{
+    "name": "base",
+    "settings": {
+        "editor.formatOnSave": true
+    },
+    "extensions": [
+		"GitHub.copilot",
+		"christian-kohler.path-intellisense",
+        "analytic-signal.preview-pdf",
+        "mhutchie.git-graph",
+        "eamodio.gitlens"
+	],
+    "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"]
+}

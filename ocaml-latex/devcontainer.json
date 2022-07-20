@@ -1,0 +1,5 @@
+{
+    "name": "OCaml LaTeX",
+    "inherits": ["ocaml", "latex"],
+    "image": "qfortier/ocaml-latex"
+}

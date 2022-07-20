@@ -1,0 +1,54 @@
+{
+    "name": "LaTeX",
+    "inherits": ["base"],
+    "postCreateCommand": "grep -v PDF /etc/ImageMagick-6/policy.xml > /tmp/policy.xml; sudo rm /etc/ImageMagick-6/policy.xml; sudo mv /tmp/policy.xml /etc/ImageMagick-6/policy.xml; sudo chown -R vscode /workspace; git config --global user.email 'qpfortier@gmail.com'; git config --global user.name 'Quentin Fortier'; git clone git@github.com:fortierq/texmf.git /workspace/texmf; git clone git@github.com:fortierq/tikz /workspace/tikz; git clone git@github.com:fortierq/cpge-exos-info.git /workspace/cpge-exos-info; git clone git@github.com:fortierq/scripts /workspace/scripts",
+    "postStartCommand": "cd /workspace/texmf; git pull; cd /workspace/tikz; git pull; cd /workspace/cpge-exos-info; git pull; cd /workspace/scripts; git pull",
+    "extensions": [
+        "james-yu.latex-workshop"
+    ],
+    "settings": {
+        "latex-workshop.chktex.enabled": false,
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.recipe.default": "lastUsed",
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "luaescape",
+                "tools": [
+                    "luaescape"
+                ]
+            },
+            {
+                "name": "lualatex",
+                "tools": [
+                    "lualatex"
+                ]
+            }
+        ],
+        "latex-workshop.latex.tools": [
+            {
+                "name": "luaescape",
+                "command": "lualatex",
+                "args": [
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-shell-escape",
+                    "-halt-on-error",
+                    "%DOC%"
+                ],
+                "env": {}
+            },
+            {
+                "name": "lualatex",
+                "command": "lualatex",
+                "args": [
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-halt-on-error",
+                    "%DOC%"
+                ],
+                "env": {}
+            }
+        ]
+    }
+}

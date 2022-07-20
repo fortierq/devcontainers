@@ -1,0 +1,10 @@
+{
+    "name": "OCaml",
+    "inherits": ["base"],
+    "image": "qfortier/ocaml:debian",
+    "onCreateCommand": "echo 'profile = default\nversion = 0.21.0' > .ocamlformat",
+    "extensions": [
+		"ocamllabs.ocaml-platform",
+		"ms-toolsai.jupyter"
+	]
+}

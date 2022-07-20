@@ -1,12 +1,12 @@
 {
-    "name": "Python",
-    "image": "qfortier/poetry",
+    "name": "poetry",
+    "inherits": ["base"],
+    "image": "qfortier/poetry:debian",
     "postCreateCommand": "poetry install",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src,type=bind,consistency=cached",
     "workspaceFolder": "/workspace/src",
     "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"],
     "settings": {
-        "editor.formatOnSave": true,
         "python.formatting.provider": "yapf",
         "python.formatting.yapfArgs": [
             "--style={based_on_style:pep8,column_limit:120}"
@@ -20,15 +20,6 @@
         "editor.minimap.enabled": false,
         "breadcrumbs.enabled": false
     },
-    "extensions": [
-		"ms-python.python",
-		"ms-toolsai.jupyter",
-		"GitHub.copilot",
-		"christian-kohler.path-intellisense",
-		"eamodio.gitlens",
-        "analytic-signal.preview-pdf",
-        "mhutchie.git-graph"
-	],
     "containerEnv": {
         "PYTHONPATH": "${containerWorkspaceFolder}",
         "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}"
