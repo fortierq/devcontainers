@@ -1,14 +1,14 @@
 {
-    "name": "Python",
+    "name": "poetry",
     "image": "qfortier/poetry:debian",
-    "postCreateCommand": "poetry install",
+    "postCreateCommand": "poetry install --no-root",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src,type=bind,consistency=cached",
     "workspaceFolder": "/workspace/src",
     "mounts": [
+        "source=/home/qfortier/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached",
         "source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"
     ],
     "settings": {
-        "editor.formatOnSave": true,
         "python.formatting.provider": "yapf",
         "python.formatting.yapfArgs": [
             "--style={based_on_style:pep8,column_limit:120}"
@@ -20,17 +20,19 @@
         "python.linting.enabled": true,
         "git.autofetch": true,
         "editor.minimap.enabled": false,
-        "breadcrumbs.enabled": false
+        "breadcrumbs.enabled": false,
+        "editor.formatOnSave": true
     },
+    "extensions": [
+        "mhutchie.git-graph",
+        "christian-kohler.path-intellisense",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "analytic-signal.preview-pdf",
+        "ms-python.python"
+    ],
     "containerEnv": {
         "PYTHONPATH": "${containerWorkspaceFolder}",
         "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}"
-    },
-    "extensions": [
-        "GitHub.copilot",
-        "christian-kohler.path-intellisense",
-        "analytic-signal.preview-pdf",
-        "mhutchie.git-graph",
-        "eamodio.gitlens"
-    ]
+    }
 }
