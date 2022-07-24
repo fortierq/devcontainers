@@ -1,0 +1,5 @@
+{
+    "name": "Poetry LaTeX",
+    "inherits": ["poetry", "latex"],
+    "image": "qfortier/ocaml-latex:debian"
+}

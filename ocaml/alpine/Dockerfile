@@ -1,9 +1,4 @@
-FROM alpine
-
-RUN apk add --update --no-cache libffi-dev gmp-dev ocaml opam && \
-    adduser -s /bin/ash -S user
-
-USER user
+FROM ocaml/opam:alpine
 
 RUN opam init && \
     opam update && \

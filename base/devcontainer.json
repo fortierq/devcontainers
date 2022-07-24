@@ -10,5 +10,6 @@
         "mhutchie.git-graph",
         "eamodio.gitlens"
 	],
-    "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"]
+    "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
+    "source=/home/qfortier/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"]
 }

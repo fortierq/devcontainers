@@ -1,11 +1,15 @@
 {
     "name": "poetry",
-    "inherits": ["base"],
+    "inherits": [
+        "base"
+    ],
     "image": "qfortier/poetry:debian",
-    "postCreateCommand": "poetry install",
+    "postCreateCommand": "poetry install --no-root",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src,type=bind,consistency=cached",
     "workspaceFolder": "/workspace/src",
-    "mounts": ["source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"],
+    "mounts": [
+        "source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"
+    ],
     "settings": {
         "python.formatting.provider": "yapf",
         "python.formatting.yapfArgs": [
@@ -20,6 +24,9 @@
         "editor.minimap.enabled": false,
         "breadcrumbs.enabled": false
     },
+    "extensions": [
+        "ms-python.python"
+    ],
     "containerEnv": {
         "PYTHONPATH": "${containerWorkspaceFolder}",
         "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}"

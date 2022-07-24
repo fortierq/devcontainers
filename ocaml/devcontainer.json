@@ -1,10 +1,13 @@
 {
     "name": "OCaml",
+    "remoteUser": "opam",
     "inherits": ["base"],
     "image": "qfortier/ocaml:debian",
     "onCreateCommand": "echo 'profile = default\nversion = 0.21.0' > .ocamlformat",
     "extensions": [
 		"ocamllabs.ocaml-platform",
 		"ms-toolsai.jupyter"
-	]
+	],
+    "mounts": ["source=/home/qfortier/.ssh,target=/home/opam/.ssh,type=bind,consistency=cached",
+    "source=/home/qfortier/.gitconfig,target=/home/opam/.gitconfig,type=bind,consistency=cached"]
 }
