@@ -1,0 +1,19 @@
+{
+    "name": "C",
+    "dockerFile": "Dockerfile",
+    "postCreateCommand": "",
+    "settings": {
+        "editor.formatOnSave": true,
+        "git.autofetch": true,
+        "editor.minimap.enabled": false,
+        "breadcrumbs.enabled": false,
+        "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
+    },
+    "extensions": [
+		"GitHub.copilot",
+		"christian-kohler.path-intellisense",
+		"eamodio.gitlens",
+		"ms-vscode.cpptools-extension-pack",
+		"mathematic.vscode-pdf"
+	]
+}
