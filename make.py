@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import json
 import os
@@ -50,23 +50,27 @@ def devcontainer(name: str):
         return dict(sorted(d.items()))
 
 @make.command()
-def update(dev: str):
+def update(dev: str, local=False):
     if dev == "all":
         for dev in devcontainer_to_repository:
             update(dev)
     else:
         d = devcontainer(dev)
-        for repo in devcontainer_to_repository[dev]:
-            os.chdir("/tmp")
-            subprocess.run(["git", "clone", f"https://www.github.com/{repo}"])
-            os.chdir(str(Path(repo).stem))
-            subprocess.run(["git", "pull"])
-            file = f".devcontainer/devcontainer.json"
-            Path(file).parent.mkdir(parents=True, exist_ok=True)
-            Path(file).write_text(json.dumps(d, indent=4))
-            subprocess.run(["git", "add", str(file)])
-            subprocess.run(["git", "commit", "-m", "Update devcontainer.json", "-q"])
-            subprocess.run(["git", "push"])
+        if local:
+            Path(".devcontainer").mkdir(exist_ok=True)
+            Path(".devcontainer/devcontainer.json").write_text(json.dumps(d, indent=4))
+        else:
+            for repo in devcontainer_to_repository[dev]:
+                os.chdir("/tmp")
+                subprocess.run(["git", "clone", f"https://www.github.com/{repo}"])
+                os.chdir(str(Path(repo).stem))
+                subprocess.run(["git", "pull"])
+                file = f".devcontainer/devcontainer.json"
+                Path(file).parent.mkdir(parents=True, exist_ok=True)
+                Path(file).write_text(json.dumps(d, indent=4))
+                subprocess.run(["git", "add", str(file)])
+                subprocess.run(["git", "commit", "-m", "Update devcontainer.json", "-q"])
+                subprocess.run(["git", "push"])
     
 if __name__ == "__main__":
     make()

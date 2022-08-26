@@ -1,34 +1,27 @@
 {
-    "name": "poetry",
-    "inherits": [
-        "base"
+  "name": "poetry",
+  "inherits": ["base"],
+  "image": "qfortier/poetry:debian",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/src,type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/src",
+  "mounts": [
+    "source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"
+  ],
+  "settings": {
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+      "--style={based_on_style:pep8,column_limit:120}"
     ],
-    "image": "qfortier/poetry:debian",
-    "postCreateCommand": "poetry install --no-root",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src,type=bind,consistency=cached",
-    "workspaceFolder": "/workspace/src",
-    "mounts": [
-        "source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"
-    ],
-    "settings": {
-        "python.formatting.provider": "yapf",
-        "python.formatting.yapfArgs": [
-            "--style={based_on_style:pep8,column_limit:120}"
-        ],
-        "python.linting.flake8Enabled": true,
-        "python.linting.flake8Args": [
-            "--ignore=E501,E302,E305"
-        ],
-        "python.linting.enabled": true,
-        "git.autofetch": true,
-        "editor.minimap.enabled": false,
-        "breadcrumbs.enabled": false
-    },
-    "extensions": [
-        "ms-python.python"
-    ],
-    "containerEnv": {
-        "PYTHONPATH": "${containerWorkspaceFolder}",
-        "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}"
-    }
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--ignore=E501,E302,E305"],
+    "python.linting.enabled": true,
+    "git.autofetch": true,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false
+  },
+  "extensions": ["ms-python.python"],
+  "containerEnv": {
+    "PYTHONPATH": "${containerWorkspaceFolder}",
+    "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}"
+  }
 }
