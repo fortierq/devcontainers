@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import typer
 
-from qfutils.ds import union_json
+# from qfutils.ds import union_json
 
 from settings import devcontainer_to_repository
 

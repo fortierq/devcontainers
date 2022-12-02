@@ -1,52 +1,85 @@
 {
-  "name": "LaTeX",
-  "inherits": ["base"],
-  "image": "qfortier/latex",
-  "workspaceFolder": "/workspaces",
-  "postCreateCommand": "git clone git@github.com:fortierq/texmf.git /workspaces/texmf; git clone git@github.com:fortierq/tikz /workspaces/tikz; git clone git@github.com:fortierq/cpge-exos-info.git /workspaces/cpge-exos-info; git clone git@github.com:fortierq/scripts /workspaces/scripts",
-  "postStartCommand": "cd /workspaces/texmf; git pull; cd /workspaces/tikz; git pull; cd /workspaces/cpge-exos-info; git pull; cd /workspaces/scripts; git pull",
-  "extensions": ["james-yu.latex-workshop"],
-  "containerEnv": { "TEXMFHOME": "/workspaces/texmf" },
-  "settings": {
-    "editor.formatOnSave": false,
-    "latex-workshop.chktex.enabled": false,
-    "latex-workshop.latex.clean.subfolder.enabled": true,
-    "latex-workshop.latex.autoClean.run": "onBuilt",
-    "latex-workshop.latex.recipe.default": "lastUsed",
-    "latex-workshop.latex.recipes": [
-      {
-        "name": "luaescape",
-        "tools": ["luaescape"]
-      },
-      {
-        "name": "lualatex",
-        "tools": ["lualatex"]
-      }
+    "containerEnv": {
+        "PYTHONPATH": "${containerWorkspaceFolder}",
+        "containerWorkspaceFolderBasename": "${containerWorkspaceFolderBasename}",
+        "TEXMFHOME": "/workspaces/texmf"
+    },
+    "extensions": [
+        "ms-python.python",
+        "analytic-signal.preview-pdf",
+        "eamodio.gitlens",
+        "james-yu.latex-workshop",
+        "mhutchie.git-graph",
+        "GitHub.copilot",
+        "christian-kohler.path-intellisense"
     ],
-    "latex-workshop.latex.tools": [
-      {
-        "name": "luaescape",
-        "command": "lualatex",
-        "args": [
-          "-interaction=nonstopmode",
-          "-file-line-error",
-          "-shell-escape",
-          "-halt-on-error",
-          "%DOC%"
+    "image": "qfortier/latex:latest",
+    "mounts": [
+        "source=/home/qfortier/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached",
+        "source=/home/qfortier/.gitmessage,target=/home/user/.gitmessage,type=bind,consistency=cached",
+        "source=/home/qfortier/.ssh,target=/home/user/.ssh,type=bind,consistency=cached"
+    ],
+    "name": "Poetry LaTeX",
+    "postCreateCommand": "git clone git@github.com:fortierq/texmf.git /workspaces/texmf; git clone git@github.com:fortierq/tikz /workspaces/tikz; git clone git@github.com:fortierq/scripts /workspaces/scripts",
+    "postStartCommand": "cd workspaces/src; git config --global commit.template ~/.gitmessage; cd /workspaces/texmf; git pull; cd /workspaces/tikz; git pull; cd /workspaces/scripts; git pull",
+    "settings": {
+        "python.formatting.provider": "yapf",
+        "python.formatting.yapfArgs": [
+            "--style={based_on_style:pep8,column_limit:120}"
         ],
-        "env": {}
-      },
-      {
-        "name": "lualatex",
-        "command": "lualatex",
-        "args": [
-          "-interaction=nonstopmode",
-          "-file-line-error",
-          "-halt-on-error",
-          "%DOC%"
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Args": [
+            "--ignore=E501,E302,E305"
         ],
-        "env": {}
-      }
-    ]
-  }
+        "python.linting.enabled": true,
+        "git.autofetch": true,
+        "editor.minimap.enabled": false,
+        "breadcrumbs.enabled": false,
+        "editor.formatOnSave": false,
+        "latex-workshop.chktex.enabled": false,
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.recipe.default": "lastUsed",
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "luaescape",
+                "tools": [
+                    "luaescape"
+                ]
+            },
+            {
+                "name": "lualatex",
+                "tools": [
+                    "lualatex"
+                ]
+            }
+        ],
+        "latex-workshop.latex.tools": [
+            {
+                "name": "luaescape",
+                "command": "lualatex",
+                "args": [
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-shell-escape",
+                    "-halt-on-error",
+                    "%DOC%"
+                ],
+                "env": {}
+            },
+            {
+                "name": "lualatex",
+                "command": "lualatex",
+                "args": [
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-halt-on-error",
+                    "%DOC%"
+                ],
+                "env": {}
+            }
+        ]
+    },
+    "workspaceFolder": "/workspaces/",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/src,type=bind,consistency=cached"
 }
